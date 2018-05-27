@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title> Deep Auth</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body >
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <nav class="white " role="navigation">
+      <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo black-text">DeepAuth</a>
+        <ul class="right hide-on-med-and-down ">
+          <li><a class = "black-text" href="#">GG</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="section " id="index-banner">
+      <div class="container">
+        <div class = "row">
+          <div class = "info-card container card col s4 offset-s1 ">
+            <h5 class=" card-title center" > DeepAuth</h5>
+            <dir class ="card-content">
+                Autenticación por medio de una red neuronal y procesamiento de imagen haciendo uso de tensorflow.js y tracking.js.
+            </dir>
+            
+          </div>
+          <div class = "info-card container card col s4 offset-s2">
+              <h5 class=" card-title center" > Instrucciones</h5>
+              <dir class ="card-content">
+                <p>1. Asegúrese de haber iniciado su WebCam.</p>
+                <p>2. Asegúrese de que su cara se vea dentro del marco de la camara.</p>
+                <p>3. Escribir su nombre.</p>
+                <p>4. Darle click al botón "Iniciar".</p>
+                  
+              </dir>
+          </div>
+        </div>
+        <div class="row center card" style="padding:5%; margin:1% 0px 5% 0px;">
+          <div class ="webcam-container col s6">
+            <video id="webCam" width="320px" height="240px" autoplay playsinline muted></video>
+            <canvas id="canvas" width="320px" height="240px"></canvas>
+          </div>
+          <div class="container col s6"><h5 class="header col s12 light"> Por favor escriba su nombre: </h5>
+            <input type="text"> 
+            <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light blue-grey">Iniciar</a>
+          </div>  
+        </div>
+  
+      </div>
+    </div>
+  
+    <footer class="page-footer white">
+      <div class="container">
+
+      </div>
+      <div class="footer-copyright black-text">
+        <div class="container" style="margin:auto;text-align:center;">
+          <div class="col s3"> <img src="./images/Logo-uao.png" style="height:4em" alt=""></div>
+          <div class="col s3">  Universidad Autonoma de Occidente</div>
+         
+        </div>
+      </div>
+    </footer>
+  
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
