@@ -13,8 +13,7 @@
 
 <body>
   <script type="text/javascript" src="/dist/15a45d4390409f0fed4dcb156d65caaf.js"></script>
-  <img id="test" src="/dist/a595ceee39ef1a09ad133a041e40e273.jpg" alt="">
-  <div id="result"></div>
+  
   <nav class="white " role="navigation">
     <div class="nav-wrapper container">
       <a id="logo-container" href="#" class="brand-logo black-text">DeepAuth</a>
@@ -33,7 +32,7 @@
           <dir class="card-content">
             Autenticación por medio de una red neuronal y procesamiento de imagen haciendo uso de tensorflow.js y tracking.js.
           </dir>
-
+          
         </div>
         <div class="info-card container card col s4 offset-s2">
           <h5 class=" card-title center"> Instrucciones</h5>
@@ -48,16 +47,18 @@
       </div>
       <div class="row center card" style="padding:5%; margin:1% 0px 5% 0px;">
         <div class="webcam-container col s6">
-          <video id="webCam" width="320px" height="240px" autoplay="" playsinline="" muted=""> </video>
-          <canvas id="canvas" width="320px" height="240px"></canvas>
+          <video id="webCam" width="640px" height="480px" autoplay="" playsinline="" muted=""> </video>
+          <canvas id="canvas" width="640px" height="480px"></canvas>
         </div>
-        <div class="container col s6">
+        <div class="camera-info center col s5 offset-s1">
           <h5 class="header col s12 light"> Por favor escriba su nombre: </h5>
-          <form action="myFunction()">
+          
             <input type="text" name="nombre">
-            <input class="btn-large waves-effect waves-light blue-grey white-text" type="submit" value="INICIAR">
-          </form>
+            <button class="btn-large waves-effect center waves-light blue-grey white-text"> Iniciar</button>   
+
+          <div id="result" class="card-content"></div>
         </div>
+
       </div>
 
     </div>

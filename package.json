@@ -20,7 +20,7 @@
     "parcel-bundler": "~1.6.2"
   },
   "scripts": {
-    "watch": "NODE_ENV=development parcel --no-hmr --open ./src/index.html ",
+    "watch": "parcel --no-hmr --open ./src/index.html ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "zestian",
