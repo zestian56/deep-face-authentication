@@ -63,5 +63,4 @@ typings/
 # cache
 .cache
 
-# dist directory
-dist
+

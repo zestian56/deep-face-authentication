@@ -45,7 +45,7 @@
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
 
-"@tensorflow/tfjs-converter@0.4.0":
+"@tensorflow/tfjs-converter@0.4.0", "@tensorflow/tfjs-converter@^0.4.0":
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-converter/-/tfjs-converter-0.4.0.tgz#bf038475417a37a8b58db1b3d3ba6dea8be2e65d"
   dependencies:
@@ -56,6 +56,12 @@
 "@tensorflow/tfjs-core@0.11.1":
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-core/-/tfjs-core-0.11.1.tgz#d26808f912529668d0a41228da37566b6b2f4f08"
+  dependencies:
+    seedrandom "~2.4.3"
+
+"@tensorflow/tfjs-core@^0.11.0":
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-core/-/tfjs-core-0.11.2.tgz#a070eeb34eb340d6ccd0199a330d201fa6d3594d"
   dependencies:
     seedrandom "~2.4.3"
 

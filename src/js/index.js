@@ -1,41 +1,52 @@
-
-import * as tf from '@tensorflow/tfjs';
-import * as gui from './gui';
+import * as tfc from '@tensorflow/tfjs-core';
 import { Webcam } from './webcam';
-import 'tracking';
-import 'tracking/build/data/face'
+import { loadFrozenModel } from '@tensorflow/tfjs-converter';
+import { MobileNet } from './mobilenet';
 
-
+let isPredicting = false;
+const mobileNet = new MobileNet();
 
 const webCam = new Webcam(document.getElementById('webCam'));
 
 async function init() {
     await webCam.start();
-    track();
+    await webCam.track();
+    console.time('Loading of model');
+    await mobileNet.load();
+    console.timeEnd('Loading of model');
 }
-function track() {
-    var canvas = document.getElementById('canvas');
-    var context = canvas.getContext('2d');
-    var tracker = new tracking.ObjectTracker('face');
-    tracker.setInitialScale(4);
-    tracker.setStepSize(2);
-    tracker.setEdgesDensity(0.1);
-    tracking.track('#webCam', tracker, { camera: true });
 
-    tracker.on('track', function (event) {
-        
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        event.data.forEach(function (rect) {
-            context.strokeStyle = '#a64ceb';
-            context.strokeRect(rect.x, rect.y, rect.width, rect.height);
-            context.font = '11px Roboto';
-            context.fillStyle = "black";
-            context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
-            context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
-        });
+
+async function predict() {
+    const cat = document.getElementById('test');
+    const pixels = tfc.fromPixels(cat);
+
+    const resultElement = document.getElementById('result');
+    console.time('First prediction');
+    let result = mobileNet.predict(pixels);
+    const topK = mobileNet.getTopKClasses(result, 5);
+    console.timeEnd('First prediction');
+    resultElement.innerText = '';
+    topK.forEach(x => {
+        resultElement.innerText += `${x.value.toFixed(3)}: ${x.label}\n`;
     });
+
+    console.time('Subsequent predictions');
+    result = mobileNet.predict(pixels);
+    mobileNet.getTopKClasses(result, 5);
+    console.timeEnd('Subsequent predictions');
 }
 
+
+
+
+
+document.getElementById('test').addEventListener('click', () => {
+    isPredicting = true;
+    predict();
+});
 window.onload = function () {
     init();
 };
+
+

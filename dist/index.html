@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title> Deep Auth</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="/dist/ac6add30234b74c708b1e696c35c5b7e.css" media="screen,projection">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/dist/42577584a9342927d2f07487b746933c.css">
+</head>
+
+<body>
+  <script type="text/javascript" src="/dist/15a45d4390409f0fed4dcb156d65caaf.js"></script>
+  <img id="test" src="/dist/a595ceee39ef1a09ad133a041e40e273.jpg" alt="">
+  <div id="result"></div>
+  <nav class="white " role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo black-text">DeepAuth</a>
+      <ul class="right hide-on-med-and-down ">
+        <li>
+          <a class="black-text" href="#">GG</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="section " id="index-banner">
+    <div class="container">
+      <div class="row">
+        <div class="info-card container card col s4 offset-s1 ">
+          <h5 class=" card-title center"> DeepAuth</h5>
+          <dir class="card-content">
+            Autenticación por medio de una red neuronal y procesamiento de imagen haciendo uso de tensorflow.js y tracking.js.
+          </dir>
+
+        </div>
+        <div class="info-card container card col s4 offset-s2">
+          <h5 class=" card-title center"> Instrucciones</h5>
+          <dir class="card-content">
+            <p>1. Asegúrese de haber iniciado su WebCam.</p>
+            <p>2. Asegúrese de que su cara se vea dentro del marco de la camara.</p>
+            <p>3. Escribir su nombre.</p>
+            <p>4. Darle click al botón "Iniciar".</p>
+
+          </dir>
+        </div>
+      </div>
+      <div class="row center card" style="padding:5%; margin:1% 0px 5% 0px;">
+        <div class="webcam-container col s6">
+          <video id="webCam" width="320px" height="240px" autoplay="" playsinline="" muted=""> </video>
+          <canvas id="canvas" width="320px" height="240px"></canvas>
+        </div>
+        <div class="container col s6">
+          <h5 class="header col s12 light"> Por favor escriba su nombre: </h5>
+          <form action="myFunction()">
+            <input type="text" name="nombre">
+            <input class="btn-large waves-effect waves-light blue-grey white-text" type="submit" value="INICIAR">
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="/dist/a6fc61b214b9f2ac73e5482feee4abb0.js"></script>
+</body>
+
+</html>
