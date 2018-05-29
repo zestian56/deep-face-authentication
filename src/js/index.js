@@ -2,38 +2,39 @@ import * as tfc from '@tensorflow/tfjs-core';
 import { Webcam } from './webcam';
 import { loadFrozenModel } from '@tensorflow/tfjs-converter';
 import { MobileNet } from './mobilenet';
+import 'tracking';
+import 'tracking/build/data/face'
+
 
 let isPredicting = false;
 const mobileNet = new MobileNet();
 
 const webCam = new Webcam(document.getElementById('webCam'));
-var face;
+
 
 
 async function init() {
     console.time('Loading of model');
     await mobileNet.load();
     console.timeEnd('Loading of model');
-
     await webCam.start();
     await track();
-
-
 }
 
 
 async function predict(image) {
-    var image2 = document.getElementById('test')
-    const pixels = tfc.fromPixels(image);
-    const resultElement = document.getElementById('result');
-    //console.time('Prediction');
-    let result = mobileNet.predict(pixels);
-    const topK = mobileNet.getTopKClasses(result, 5);
-    //console.timeEnd('Prediction');
-    resultElement.innerText = '';
-    topK.forEach(x => {
-        resultElement.innerText += `${x.value.toFixed(3)}: ${x.label}\n`;
-    });
+    if (isPredicting) {
+        const pixels = tfc.fromPixels(image);
+        
+        //console.time('Prediction');
+        let result = mobileNet.predict(pixels);
+        const topK = mobileNet.getTopKClasses(result, 5);
+        compare(topK[0].label)
+        //console.timeEnd('Prediction');
+
+        
+    }
+
 }
 
 async function track() {
@@ -49,11 +50,10 @@ async function track() {
 
         tracking.track('#webCam', tracker);
         var imageData = 'nada';
-        
+
         tracker.on('track', function (event) {
 
             var webcam = document.getElementById('webCam');
-            console.log(webcam.width,webcam.height)
             context.clearRect(0, 0, canvas.width, canvas.height);
             context.drawImage(webcam, 0, 0, webcam.width, webcam.height);
             event.data.forEach(rect => {
@@ -66,17 +66,47 @@ async function track() {
                 context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
 
                 imageData = context.getImageData(rect.x, rect.y, rect.width, rect.height);
-                context.putImageData(imageData,0,0)
+                //context.putImageData(imageData,0,0)
                 predict(imageData)
-                console.log(imageData)
+                //console.log(imageData)
 
             });
         });
         resolve();
     })
 }
+function compare(name,accuracy) {
+
+    var idealName = document.getElementById('txtNombre').value.toLowerCase().trim();
+    if (name == idealName) {
+        isPredicting = false;
+        console.log("#ElqueEs")
+        const resultElement = document.getElementById('result');
+        resultElement.innerHTML = `<h3>Bienvenido ${idealName}</h3>`;
+    }
+}
 
 
+document.getElementById('btnStart').addEventListener('click', async () => {
+
+    if (document.getElementById('txtNombre').value == "") {
+        alert("no has ingresado un nombre")
+    }
+    else {
+
+        if (isPredicting) {
+            document.getElementById('btnStart').innerText = "INICIAR";
+            document.getElementById('txtNombre').disabled = false;
+        }
+        else {
+            document.getElementById('txtNombre').disabled = true;
+            document.getElementById('btnStart').innerText = "DETENER";
+        }
+        isPredicting = !isPredicting;
+
+    }
+
+})
 
 
 
